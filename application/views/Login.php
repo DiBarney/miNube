@@ -19,10 +19,8 @@
                 <div class="fila contenido">
                     <div class="contenedorFormulario">
                         <form action="<?= base_url() ?>index.php/login/iniciarSesion" method="POST">
-                            <label for="correo">Correo de Usuario:</label>
-                            <input type="email" name="correo" id="correo">
-                            <label for="pwd">Contraseña:</label>
-                            <input type="password" name="pwd" id="pwd">
+                            <input type="email" name="correo" id="correo" placeholder="Correo Electronico:">
+                            <input type="password" name="pwd" id="pwd" placeholder="Contraseña:">
                             <input type="submit" value="Iniciar Sesión">
                         </form>
                     </div>

@@ -5,8 +5,8 @@ class DashboardDB extends CI_model{
         $this->load->database();
     }
     
-    public function registroArchivo($nombre, $ruta, $tamano){
-        return $this->db->insert('archivo_cargado',['nombre'=>$nombre, 'ruta'=>$ruta, 'tamano'=>$tamano]);
+    public function registroArchivo($nombre, $ruta, $tamano, $fecha){
+        return $this->db->insert('archivo_cargado',['nombre'=>$nombre, 'ruta'=>$ruta, 'tamano'=>$tamano, 'fecha'=>$fecha]);
     }
 
     public function eliminarArchivo($nombre){

@@ -36,19 +36,21 @@ class Dashboard extends CI_Controller {
             $rutaPre = $data['uploadSuccess']['full_path'];
             $tamanoPre = $data['uploadSuccess']['file_size'];
             $tamano = '';
-    
-            $ruta = substr($rutaPre,strpos($rutaPre,'cargados'));
             if($tamanoPre>1000){
                 $tamanoPre /= 1000;
+                $tamanoPre = number_format($tamanoPre,2);
                 $tamano = strval($tamanoPre);
                 $tamano .= ' MB';
             }else{
                 $tamano = strval($tamanoPre);
                 $tamano .= ' KB';
             }
+            
+            $fecha = date("d/m/Y");
+            $ruta = substr($rutaPre,strpos($rutaPre,'cargados'));
             $nombre = $data['uploadSuccess']['file_name'];
 
-            $this->DashboardDB->registroArchivo($nombre,$ruta,$tamano);
+            $this->DashboardDB->registroArchivo($nombre,$ruta,$tamano,$fecha);
             redirect('Dashboard');
         }
 

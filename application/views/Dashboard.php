@@ -31,11 +31,13 @@
             <section class="seccionDash">
                 <div class="fila">
                     <div class="columna menuDash">
-                        <h1>Dashboard</h1>
+                        <h1>Mi Dashboard</h1>
                         <div class="contFormSubida">
-                            <p>Subir Archivo</p>
                             <form action="<?= base_url() ?>index.php/Dashboard/subirArchivo" method="POST" enctype="multipart/form-data">
-                                <input type="file" id="archivo" name="archivo">
+                                <div class="btnCargar">
+                                    <p>Subir Archivo</p>
+                                    <input type="file" id="archivo" name="archivo" required>
+                                </div>    
                                 <input type="submit" name="btnSubir" value="Subir">
                             </form>
                         </div>
@@ -47,6 +49,7 @@
                             <tr>
                                 <th class="grande">Nombre</th>
                                 <th class="grande">Tamaño</th>
+                                <th class="grande">Fecha de Modificación</th>
                                 <th class="chico"></th>
                                 <th class="chico"></th>
                             </tr>
@@ -54,6 +57,7 @@
                             <tr>
                                 <td><?= $fila['nombre']?></td>
                                 <td><?= $fila['tamano']?></td>
+                                <td><?= $fila['fecha']?></td>
                                 <td><a href="<?= base_url()."index.php/Dashboard/descargarArchivo/".$fila['nombre']?>">Descargar</a></td>
                                 <td><a href="<?= base_url()."index.php/Dashboard/eliminarArchivo/".$fila['nombre']?>">Eliminar</a></td>
                             </tr>
