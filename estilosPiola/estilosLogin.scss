@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+}
+body {
+	font-size: 18px;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	background: rgb(236, 236, 236);
+	height: 100%;
+}
+html {
+	height: 100%;
+}
+
+main {
+	width: 100%;
+	.contenedorPrincipal {
+		width: 100%;
+		.seccionLogin {
+			width: 100%;
+			height: 100%;
+			padding: 7em;
+			background: rgb(71, 93, 194);
+			color: white;
+			.cabeceraLogin {
+				text-align: center;
+			}
+			.contenido {
+				.contenedorFormulario {
+					width: 30%;
+					margin: 0 auto;
+					form {
+						display: flex;
+						flex-direction: column;
+						text-align: center;
+						input,
+						label {
+							margin: 0.2em;
+							padding: 0.4em;
+							outline: none;
+							border-radius: 20px;
+							border: none;
+						}
+						input[type="email"],
+						input[type="password"] {
+							padding: 0.6em;
+						}
+						input[type="submit"] {
+							margin: 2em 0;
+							background: rgb(0, 0, 95);
+							color: white;
+							padding: 0.6em;
+							font-size: 1em;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+footer {
+	background: rgb(80, 80, 80);
+	bottom: 0px;
+	.fila {
+		width: 100%;
+		padding: 2em;
+		text-align: center;
+		color: white;
+	}
+}

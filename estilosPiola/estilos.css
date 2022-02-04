@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  background: #ececec;
+}
+
+header {
+  width: 100%;
+  background: #475dc2;
+  color: white;
+}
+header .fila {
+  width: 90%;
+  padding: 1em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+header .fila .columna nav a {
+  color: white;
+}
+
+main {
+  width: 100%;
+}
+main .contenedorPrincipal {
+  width: 90%;
+  margin: 1em auto;
+}
+main .contenedorPrincipal .seccionDash {
+  background: lightgray;
+  border-radius: 20px;
+  padding: 1em;
+}
+main .contenedorPrincipal .seccionDash .fila {
+  width: 100%;
+}
+main .contenedorPrincipal .seccionDash .fila .columna {
+  display: flex;
+  flex-direction: row;
+}
+main .contenedorPrincipal .seccionDash .fila .menuDash {
+  width: 40%;
+  align-items: center;
+  justify-content: space-around;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table {
+  width: 100%;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td,
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr th {
+  padding: 1em;
+  text-align: left;
+  border-bottom: 2px solid #969696;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .grande {
+  width: 40%;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .chico {
+  width: 10%;
+}
+
+footer {
+  background: #505050;
+  bottom: 0px;
+}
+footer .fila {
+  width: 100%;
+  padding: 2em;
+  text-align: center;
+  color: white;
+}
+
+/*# sourceMappingURL=estilos.css.map */

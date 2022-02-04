@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+}
+body {
+	font-size: 18px;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	background: rgb(236, 236, 236);
+}
+header {
+	width: 100%;
+	background: rgb(71, 93, 194);
+	color: white;
+	.fila {
+		width: 90%;
+		padding: 1em;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		.columna {
+			nav {
+				a {
+					color: white;
+				}
+			}
+		}
+	}
+}
+main {
+	width: 100%;
+	.contenedorPrincipal {
+		width: 90%;
+		margin: 1em auto;
+		.seccionDash {
+			background: rgb(211, 211, 211);
+			border-radius: 20px;
+			padding: 1em;
+			.fila {
+				width: 100%;
+				.columna {
+					display: flex;
+					flex-direction: row;
+				}
+				.menuDash {
+					width: 40%;
+					align-items: center;
+					justify-content: space-around;
+				}
+				.contenedorTabla {
+					table {
+						width: 100%;
+						tr td,
+						tr th {
+							padding: 1em;
+							text-align: left;
+							border-bottom: 2px solid rgb(150, 150, 150);
+						}
+						tr .grande {
+							width: 40%;
+						}
+						tr .chico {
+							width: 10%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+footer {
+	background: rgb(80, 80, 80);
+	bottom: 0px;
+	.fila {
+		width: 100%;
+		padding: 2em;
+		text-align: center;
+		color: white;
+	}
+}
