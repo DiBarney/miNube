@@ -9,8 +9,8 @@ class DashboardDB extends CI_model{
         return $this->db->insert('archivo_cargado',['nombre'=>$nombre, 'ruta'=>$ruta, 'tamano'=>$tamano, 'fecha'=>$fecha]);
     }
 
-    public function eliminarArchivo($nombre){
-        return $this->db->query("DELETE FROM archivo_cargado WHERE nombre = '$nombre';");
+    public function eliminarArchivo($id){
+        return $this->db->query("DELETE FROM archivo_cargado WHERE id = '$id';");
     }
 
     public function devolverArchivos(){

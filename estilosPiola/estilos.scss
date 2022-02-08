@@ -7,6 +7,19 @@
 a {
 	text-decoration: none;
 }
+.btnDes,
+.btnEli {
+	width: 90%;
+	padding: 0.4em 0.6em;
+	border-radius: 10px;
+	color: white;
+}
+.btnDes {
+	background: #6d72c3;
+}
+.btnEli {
+	background: #c73434;
+}
 body {
 	font-size: 16px;
 	font-family: "Lato", sans-serif;
@@ -70,11 +83,20 @@ main {
 								&:hover {
 									background: rgba(0, 0, 0, 0.075);
 								}
+								.puntoRojo {
+									position: absolute;
+									width: 8px;
+									height: 8px;
+									border-radius: 50%;
+									background: #c73434;
+									right: 6px;
+								}
 								p {
 									color: #6d72c3;
 									font-weight: 900;
+									// z-index: 1;
 								}
-								#archivo {
+								.inpArchivo {
 									position: absolute;
 									top: 0px;
 									left: 0px;
@@ -84,6 +106,7 @@ main {
 									height: 100%;
 									opacity: 0;
 									cursor: pointer;
+									// z-index: 2;
 								}
 							}
 							input[type="submit"] {
@@ -117,9 +140,6 @@ main {
 						tr td {
 							color: rgb(65, 65, 65);
 							border-bottom: 2px solid rgb(184, 184, 184);
-							a {
-								color: rgb(65, 65, 65);
-							}
 						}
 						tr .grande {
 							width: 30%;

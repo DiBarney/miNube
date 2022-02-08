@@ -61,7 +61,7 @@ main .contenedorPrincipal .seccionLogin .contenido .contenedorFormulario form in
   margin: 0.8em 0;
   padding: 0.6em;
   outline: none;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   font-size: 1em;
   font-family: "Lato", sans-serif;
@@ -75,6 +75,14 @@ main .contenedorPrincipal .seccionLogin .contenido .contenedorFormulario form in
 }
 main .contenedorPrincipal .seccionLogin .contenido .contenedorFormulario form input[type=submit]:hover {
   background: rgba(56, 41, 107, 0.493);
+}
+main .contenedorPrincipal .seccionLogin .contenido .contenedorError {
+  background: #c73434;
+  max-width: 250px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0.4em;
+  border-radius: 10px;
 }
 
 footer {

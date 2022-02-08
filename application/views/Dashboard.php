@@ -35,8 +35,9 @@
                         <div class="contFormSubida">
                             <form action="<?= base_url() ?>index.php/Dashboard/subirArchivo" method="POST" enctype="multipart/form-data">
                                 <div class="btnCargar">
-                                    <p>Subir Archivo</p>
-                                    <input type="file" id="archivo" name="archivo" required>
+                                    <div class="puntoRojo" id="puntoRojo" style="display:none;"></div>
+                                    <p>Subir Archivos</p>
+                                    <input type="file" class="inpArchivo" id="inpArchivo" name="archivos[]" multiple required>
                                 </div>    
                                 <input type="submit" name="btnSubir" value="Subir">
                             </form>
@@ -58,16 +59,10 @@
                                 <td><?= $fila['nombre']?></td>
                                 <td><?= $fila['tamano']?></td>
                                 <td><?= $fila['fecha']?></td>
-                                <td><a href="<?= base_url()."index.php/Dashboard/descargarArchivo/".$fila['nombre']?>">Descargar</a></td>
-                                <td><a href="<?= base_url()."index.php/Dashboard/eliminarArchivo/".$fila['nombre']?>">Eliminar</a></td>
+                                <td><a href="<?= base_url()."index.php/Dashboard/descargarArchivo/".$fila['nombre']?>" class="btnDes">Descargar</a></td>
+                                <td><a href="<?= base_url()."index.php/Dashboard/eliminarArchivo/".$fila['id']?>" class="btnEli">Eliminar</a></td>
                             </tr>
                             <?php }?>
-                            <!-- <tr>
-                                <td>Doc.docx</td>
-                                <td>23.4 MB</td>
-                                <td>Descargar</td>
-                                <td>Eliminar</td>
-                            </tr> -->
                         </table>
                     </div>
                 </div>
@@ -79,6 +74,7 @@
         <div class="fila">
             <p>MiNube - By Barney 2022</p>
         </div>
-    </footer>        
+    </footer>
+    <script src="<?= base_url('assets/js/fnDashboard.js')?>"></script>
 </body>
 </html>

@@ -24,7 +24,9 @@ class Login extends CI_Controller {
 			$this->session->set_userdata('correo',$correo);
 			redirect('Dashboard');
 		}else{
-			$this->index();
+			$info['errores']="El usuario o la contraseña son incorrectos, verifica los datos e intenta de nuevo";
+			$info['titulo']="Iniciar Sesión";
+			$this->load->view('Login',$info);
 		}
 	}
 	public function cerrarSesion(){

@@ -9,6 +9,22 @@ a {
   text-decoration: none;
 }
 
+.btnDes,
+.btnEli {
+  width: 90%;
+  padding: 0.4em 0.6em;
+  border-radius: 10px;
+  color: white;
+}
+
+.btnDes {
+  background: #6d72c3;
+}
+
+.btnEli {
+  background: #c73434;
+}
+
 body {
   font-size: 16px;
   font-family: "Lato", sans-serif;
@@ -80,11 +96,19 @@ main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btn
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar:hover {
   background: rgba(0, 0, 0, 0.075);
 }
+main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar .puntoRojo {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c73434;
+  right: 6px;
+}
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar p {
   color: #6d72c3;
   font-weight: 900;
 }
-main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar #archivo {
+main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar .inpArchivo {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -124,9 +148,6 @@ main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr th {
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td {
   color: #414141;
   border-bottom: 2px solid #b8b8b8;
-}
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td a {
-  color: #414141;
 }
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .grande {
   width: 30%;

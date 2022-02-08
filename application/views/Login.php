@@ -24,6 +24,11 @@
                             <input type="submit" value="Iniciar Sesión">
                         </form>
                     </div>
+                    <?php if(isset($errores)){?>
+                    <div class="contenedorError">
+                        <p><?= $errores ?></p>
+                    </div>
+                    <?php } ?>
                 </div>
             </section>
         </div>
