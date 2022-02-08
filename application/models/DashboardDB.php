@@ -17,5 +17,10 @@ class DashboardDB extends CI_model{
         $consultaArchivos = $this->db->get('archivo_cargado');
         return $consultaArchivos->result_id;
     }
+
+    public function devolverArchivo($id){
+        $consultaArchivos = $this->db->query("SELECT * FROM archivo_cargado WHERE id = '$id';");
+        return $consultaArchivos->result();
+    }
 }
 ?>

@@ -149,6 +149,40 @@ main {
 						}
 					}
 				}
+				.contenidoEliminar {
+					margin: 1em 0;
+					.contenedorFormEliminar {
+						display: flex;
+						flex-direction: column;
+						h2,
+						p,
+						div {
+							margin: 1em 0;
+							color: rgb(65, 65, 65);
+						}
+						.contenedorBotones {
+							a:first-child {
+								font-size: 1em;
+								color: rgb(65, 65, 65);
+							}
+							a:last-child {
+								padding: 0.6em;
+								margin-left: 1em;
+								font-size: 1em;
+								font-weight: 900;
+								border: none;
+								background: #c73434;
+								color: white;
+								border-radius: 10px;
+								cursor: pointer;
+								transition: background 0.5s ease;
+								&:hover {
+									background: #be5151;
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

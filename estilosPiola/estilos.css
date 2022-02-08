@@ -155,6 +155,38 @@ main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .grande {
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .chico {
   width: 10%;
 }
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar {
+  margin: 1em 0;
+}
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar {
+  display: flex;
+  flex-direction: column;
+}
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar h2,
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar p,
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar div {
+  margin: 1em 0;
+  color: #414141;
+}
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar .contenedorBotones a:first-child {
+  font-size: 1em;
+  color: #414141;
+}
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar .contenedorBotones a:last-child {
+  padding: 0.6em;
+  margin-left: 1em;
+  font-size: 1em;
+  font-weight: 900;
+  border: none;
+  background: #c73434;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar .contenedorBotones a:last-child:hover {
+  background: #be5151;
+}
 
 footer {
   background: rgba(0, 0, 0, 0.507);

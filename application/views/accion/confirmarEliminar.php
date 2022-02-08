@@ -45,25 +45,15 @@
                     </div>
                 </div>
                 <div class="fila">
-                    <div class="columna contenedorTabla">
-                        <table>
-                            <tr>
-                                <th class="grande">Nombre</th>
-                                <th class="grande">Tamaño</th>
-                                <th class="grande">Fecha de Modificación</th>
-                                <th class="chico"></th>
-                                <th class="chico"></th>
-                            </tr>
-                            <?php while($fila = mysqli_fetch_array($archivos)){?>
-                            <tr>
-                                <td><?= $fila['nombre']?></td>
-                                <td><?= $fila['tamano']?></td>
-                                <td><?= $fila['fecha']?></td>
-                                <td><a href="<?= base_url()."index.php/Dashboard/descargarArchivo/".$fila['nombre']?>" class="btnDes">Descargar</a></td>
-                                <td><a href="<?= base_url()."index.php/Dashboard/confirmarEliminar/".$fila['id']?>" class="btnEli">Eliminar</a></td>
-                            </tr>
-                            <?php }?>
-                        </table>
+                    <div class="columna contenidoEliminar">
+                        <div class="contenedorFormEliminar">
+                            <h2>¿Eliminar el archivo "<?=$nombreArchivo?>" ?</h2>
+                            <p>EL archivo se eliminará permanentemente.</p>
+                            <div class="contenedorBotones">
+                                <a href="<?=base_url('index.php/Dashboard')?>" class="btn">Cancelar</a>
+                                <a href="<?=base_url('index.php/Dashboard/eliminarArchivo/'.$idArchivo)?>" class="btn">Eliminar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -77,4 +67,4 @@
     </footer>
     <script src="<?= base_url('assets/js/fnDashboard.js')?>"></script>
 </body>
-</html>
+</html> 

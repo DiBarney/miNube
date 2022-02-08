@@ -77,4 +77,11 @@ class Dashboard extends CI_Controller {
     public function mostrarArchivos(){
         return $this->DashboardDB->devolverArchivos();
     }
+
+    public function confirmarEliminar($id){
+        $consultaArchivo = $this->DashboardDB->devolverArchivo($id);
+        $cont['nombreArchivo'] = $consultaArchivo[0]->nombre;
+        $cont['idArchivo'] = $id;
+        $this->load->view('accion/confirmarEliminar',$cont);
+    }
 }
