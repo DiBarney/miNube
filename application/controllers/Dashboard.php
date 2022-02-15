@@ -18,49 +18,81 @@ class Dashboard extends CI_Controller {
 	}
 
     public function subirArchivo(){
-        
-        $config['upload_path'] = "cargados/";
-        $config['allowed_types'] = "*";
-        
-        $this->load->library('upload', $config);
-        $this->upload->initialize($config);
-        
-        $conteoArchivos = count($_FILES['archivos']['name']);
-        for ($i=0; $i < $conteoArchivos; $i++) { 
-            $_FILES['archivo']['name'] = $_FILES['archivos']['name'][$i];
-            $_FILES['archivo']['type'] = $_FILES['archivos']['type'][$i];
-            $_FILES['archivo']['tmp_name'] = $_FILES['archivos']['tmp_name'][$i];
-            $_FILES['archivo']['error'] = $_FILES['archivos']['error'][$i];
-            $_FILES['archivo']['size'] = $_FILES['archivos']['size'][$i];
+        $directorio = "cargados/";
 
-            // var_dump($_FILES['archivo']['name']);
+        foreach ($_FILES as $archivo) {
+            $charReservados = [" ","!","#","$","%","&","'","(",")","*","+",",","/",":",";","=","?","@","[","]"];
+            $nombre = $archivo['name'];
+            foreach ($charReservados as $character) {
+                $nombre = str_replace($character,"_",$nombre);
+                echo $nombre;
+            }
 
-            if (!$this->upload->do_upload('archivo')) {
-                echo $this->upload->display_errors();
-                return;
+            $ruta = $directorio . $nombre;
+            $tamanoKb = $archivo['size']*0.001;
+            $fecha = date("d/m/Y");
+            $tipoStr = $archivo['type'];
+            $tipoStr = substr($tipoStr,0,strpos($tipoStr,"/"));
+
+            switch($tipoStr){
+                case 'image': $tipo = 1;
+                break;
+                case 'video': $tipo = 2;
+                break;
+                default : $tipo = 3;
+            }
+
+            if($tamanoKb>1024.0){
+                $tamanoKb /= 1024.0;
+                $tamano = number_format($tamanoKb,2);
+                $tamano .= ' MB';
             }else{
-                $data['uploadSuccess'] = $this->upload->data();
-                $rutaPre = $data['uploadSuccess']['full_path'];
-                $tamanoPre = $data['uploadSuccess']['file_size'];
-                $tamano = '';
-                if($tamanoPre>1000){
-                    $tamanoPre /= 1000;
-                    $tamanoPre = number_format($tamanoPre,2);
-                    $tamano = strval($tamanoPre);
-                    $tamano .= ' MB';
-                }else{
-                    $tamano = strval($tamanoPre);
-                    $tamano .= ' KB';
+                $tamano = number_format($tamanoKb,2);
+                $tamano .= ' KB';
+            }
+
+            if(move_uploaded_file($archivo['tmp_name'],$ruta)) {
+                $this->DashboardDB->registroArchivo($nombre,$ruta,$tamano,$fecha,$tipo);
+                if($tipo == 1){
+                    $this->crearThumb($nombre);
                 }
-                
-                $fecha = date("d/m/Y");
-                $ruta = substr($rutaPre,strpos($rutaPre,'cargados'));
-                $nombre = $data['uploadSuccess']['file_name'];
-    
-                $this->DashboardDB->registroArchivo($nombre,$ruta,$tamano,$fecha);
+                echo "Archivo Subido";
+            }else{
+                echo "Error al subir archivo";
             }
         }
-        redirect('Dashboard');
+        // redirect('Dashboard');
+    }
+
+    function crearThumb($filename){
+        $this->load->library('image_lib');
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'cargados/'.$filename;
+        $config['create_thumb'] = TRUE;
+        $config['maintain_ratio'] = TRUE;
+        $config['new_image'] = 'cargados/thumbs/';
+        $config['thumb_marker'] = '';
+        $config['width'] = 75;
+        $config['height'] = 75;
+
+        $this->image_lib->initialize($config);
+        if(!$this->image_lib->resize()){
+            echo $this->image_lib->display_errors(); 
+        }else{
+            echo "Thumb creado";
+        }
+        $this->image_lib->clear();
+    }
+
+    public function modificarArchivo($id,$nombre){
+
+        $nombreEditado = $this->input->post('nombreEditado');
+        $directorio = str_replace('http://','', base_url('cargados/'));
+        $res = rename($directorio.$nombre,$directorio.$nombreEditado);
+        
+        var_dump($res);
+        // $resultado = $this->DashboardDB->modificarArchivo($id,$nombreEditado);
+        // var_dump($resultado);
     }
 
     public function descargarArchivo($archivo){
@@ -68,9 +100,10 @@ class Dashboard extends CI_Controller {
         force_download($archivo,$descarga);
     }
     
-    public function eliminarArchivo($id){
-        unlink('./cargados/'.$id);
-        $this->DashboardDB->eliminarArchivo($id);
+    public function eliminarArchivo($nombreArchivo){
+        unlink('./cargados/'.$nombreArchivo);
+        unlink('./cargados/thumbs/'.$nombreArchivo);
+        $this->DashboardDB->eliminarArchivo($nombreArchivo);
         redirect('Dashboard');
     }
 
@@ -78,10 +111,17 @@ class Dashboard extends CI_Controller {
         return $this->DashboardDB->devolverArchivos();
     }
 
+    public function devolverRuta($id){
+        $fila = $this->DashboardDB->devolverArchivo($id);
+        // var_dump($fila);
+        echo json_encode($fila[0]);
+        //mysqli_fetch_object();
+    }
     public function confirmarEliminar($id){
         $consultaArchivo = $this->DashboardDB->devolverArchivo($id);
         $cont['nombreArchivo'] = $consultaArchivo[0]->nombre;
         $cont['idArchivo'] = $id;
         $this->load->view('accion/confirmarEliminar',$cont);
     }
+
 }

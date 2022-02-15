@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
+@font-face {
+  font-family: "FASolid";
+  src: url("../assets/font/fa-solid-900.ttf");
+}
+html {
+  height: 100%;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -10,11 +18,19 @@ a {
 }
 
 .btnDes,
-.btnEli {
+.btnEli,
+.btnEdi {
+  font-family: "FASolid";
   width: 90%;
   padding: 0.4em 0.6em;
   border-radius: 10px;
   color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btnEdi {
+  background: #6d72c3;
 }
 
 .btnDes {
@@ -26,10 +42,58 @@ a {
 }
 
 body {
+  height: 100%;
   font-size: 16px;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   background: #ececec;
+}
+
+.preVisualizador {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.733);
+}
+.preVisualizador .fila .equis {
+  padding: 2em 4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.preVisualizador .fila .equis button {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: white;
+  cursor: pointer;
+}
+.preVisualizador .fila .contenedorMedia {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.preVisualizador .fila .contenedorMedia video,
+.preVisualizador .fila .contenedorMedia img,
+.preVisualizador .fila .contenedorMedia .prevArchivo {
+  box-shadow: 4px 4px 20px #000;
+}
+.preVisualizador .fila .contenedorMedia .contPrevArch .prevArchivo {
+  background: #353535;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.6em;
+}
+.preVisualizador .fila .contenedorMedia .contPrevArch .prevArchivo p:first-child {
+  font-family: "FASolid";
+  font-size: 4em;
 }
 
 header {
@@ -63,8 +127,15 @@ main .contenedorPrincipal .seccionDash {
   border-radius: 20px;
   padding: 1em 0;
 }
+main .contenedorPrincipal .seccionDash .filaProgresoSubida {
+  margin: 1em 0;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 main .contenedorPrincipal .seccionDash .fila {
   width: 100%;
+  position: relative;
 }
 main .contenedorPrincipal .seccionDash .fila .columna {
   display: flex;
@@ -133,6 +204,38 @@ main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form inpu
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form input[type=submit]:hover {
   background: #4d5088;
 }
+main .contenedorPrincipal .seccionDash .fila .colBtnCancelar input {
+  margin: 0 1em 0 0;
+  padding: 0.2em 0.6em;
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  background: #c73434;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+main .contenedorPrincipal .seccionDash .fila .progresoSubida {
+  width: 16%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+main .contenedorPrincipal .seccionDash .fila .progresoSubida .contenedorProgreso {
+  width: 100%;
+  max-width: 200px;
+  background: #c7c7c7;
+  border-radius: 50px;
+}
+main .contenedorPrincipal .seccionDash .fila .progresoSubida .contenedorProgreso #indicadorPorc {
+  display: block;
+  background: #6d72c3;
+  color: white;
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  font-size: 0.8em;
+  border-radius: 50px;
+}
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla {
   width: 100%;
   min-width: 620px;
@@ -145,22 +248,80 @@ main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr th {
   padding: 1em;
   text-align: left;
 }
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .btnPrev:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.082);
+}
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td {
   color: #414141;
   border-bottom: 2px solid #b8b8b8;
 }
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td:first-child {
+  padding: 0em;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .miniatura {
+  width: 100%;
+  max-width: 35px;
+  max-height: 35px;
+  aspect-ratio: 1/1;
+  text-align: center;
+  overflow: hidden;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .miniatura img {
+  width: 100%;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .miniatura p {
+  color: #727272;
+  font-size: 1.8em;
+  font-family: "FASolid";
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar {
+  position: absolute;
+  border-radius: 20px;
+  background: #8f8f8f;
+  right: 0px;
+  padding: 1em;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar p {
+  color: white;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar input,
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar button {
+  color: white;
+  margin: 0.4em 0.2em;
+  padding: 0.6em;
+  border-radius: 10px;
+  border: none;
+  font-family: "Lato", sans-serif;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar button {
+  background: none;
+  cursor: pointer;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar input[type=submit] {
+  background: #42457a;
+  cursor: pointer;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar input[type=text] {
+  color: #414141;
+  outline: none;
+}
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .grande {
-  width: 30%;
+  width: 29%;
 }
 main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .chico {
-  width: 10%;
+  width: 3%;
 }
 main .contenedorPrincipal .seccionDash .fila .contenidoEliminar {
   margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 }
 main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar h2,
 main .contenedorPrincipal .seccionDash .fila .contenidoEliminar .contenedorFormEliminar p,

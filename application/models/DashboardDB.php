@@ -5,12 +5,16 @@ class DashboardDB extends CI_model{
         $this->load->database();
     }
     
-    public function registroArchivo($nombre, $ruta, $tamano, $fecha){
-        return $this->db->insert('archivo_cargado',['nombre'=>$nombre, 'ruta'=>$ruta, 'tamano'=>$tamano, 'fecha'=>$fecha]);
+    public function registroArchivo($nombre, $ruta, $tamano, $fecha, $tipo){
+        return $this->db->insert('archivo_cargado',['nombre'=>$nombre, 'ruta'=>$ruta, 'tamano'=>$tamano, 'fecha'=>$fecha, 'tipo'=>$tipo]);
     }
 
-    public function eliminarArchivo($id){
-        return $this->db->query("DELETE FROM archivo_cargado WHERE id = '$id';");
+    public function eliminarArchivo($nombreArchivo){
+        return $this->db->query("DELETE FROM archivo_cargado WHERE nombre = '$nombreArchivo';");
+    }
+
+    public function modificarArchivo($id,$nombreEditado){
+        return $this->db->query("UPDATE archivo_cargado SET nombre = '$nombreEditado' WHERE (id = '$id');");
     }
 
     public function devolverArchivos(){

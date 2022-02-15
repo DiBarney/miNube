@@ -48,10 +48,10 @@
                     <div class="columna contenidoEliminar">
                         <div class="contenedorFormEliminar">
                             <h2>¿Eliminar el archivo "<?=$nombreArchivo?>" ?</h2>
-                            <p>EL archivo se eliminará permanentemente.</p>
+                            <p>El archivo se eliminará permanentemente.</p>
                             <div class="contenedorBotones">
                                 <a href="<?=base_url('index.php/Dashboard')?>" class="btn">Cancelar</a>
-                                <a href="<?=base_url('index.php/Dashboard/eliminarArchivo/'.$idArchivo)?>" class="btn">Eliminar</a>
+                                <a href="<?=base_url('index.php/Dashboard/eliminarArchivo/'.$nombreArchivo)?>" class="btn">Eliminar</a>
                             </div>
                         </div>
                     </div>
