@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     var prevArchivo = document.getElementById('prevArchivo');
     var btnSubir = document.getElementById('btnSubir');
     var indicadorPorc = document.getElementById('indicadorPorc');
+    var infosArchivo = document.getElementsByClassName('infoArchivo');
     
     inpArchivo.addEventListener('input',()=>{
         puntoRojo.style.display = (puntoRojo.style.display == "none") ? "block" : "none";
@@ -24,6 +25,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     btnSubir.addEventListener('click',()=>{
         subirArchivos();
     });
+
+    for (let infoArchivo of infosArchivo) {
+        infoArchivo.children[0].children[1].addEventListener('mouseover',()=>{
+            infoArchivo.children[2].style.display = (infoArchivo.children[2].style.display == "none") ? "flex" : "none";
+        });
+        infoArchivo.children[0].children[1].addEventListener("mouseout",(event)=>{
+            setTimeout(function() {
+                infoArchivo.children[2].style.display = "none";
+            }, 5000);
+          }, false);
+    }
     
     for (let item of btnsEdi) {
         item.addEventListener('click',()=>{
@@ -51,19 +63,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                         prevArchivo.style.display = "none";
                         fuenteImg.src = `../${datosArchivo.ruta}`;
                         fuenteImg.style.display = "block";
+                        preVisualizador.style.display = 'block';
                         break;
                     case "2":
                         fuenteImg.style.display = "none";
                         prevArchivo.style.display = "none";
-                        fuenteVideo.src = `../${datosArchivo.ruta}`;
-                        reprouctor.style.display = "block";
+                        // fuenteVideo.src = `http://localhost/miNube/cargados/${datosArchivo.nombre}`;
+                        // leerVideo();
+                        // reprouctor.style.display = "block";
                         break;
                     default :
                         fuenteImg.style.display = "none";
                         reprouctor.style.display = "none";
                         prevArchivo.style.display = "block";
+                        preVisualizador.style.display = 'block';
                 }
-                preVisualizador.style.display = 'block';
             });
         });
     }

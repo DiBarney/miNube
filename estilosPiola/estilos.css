@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
 @font-face {
   font-family: "FASolid";
-  src: url("../assets/font/fa-solid-900.ttf");
+  src: url("../assets/font/fa6-solid-900.otf");
 }
 html {
   height: 100%;
@@ -20,24 +20,34 @@ a {
 .btnDes,
 .btnEli,
 .btnEdi {
-  font-family: "FASolid";
-  width: 90%;
-  padding: 0.4em 0.6em;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  padding: 0.6em 1em;
   color: white;
   text-align: center;
   cursor: pointer;
 }
+.btnDes p:first-child,
+.btnEli p:first-child,
+.btnEdi p:first-child {
+  font-family: "FASolid";
+}
+.btnDes p:last-child,
+.btnEli p:last-child,
+.btnEdi p:last-child {
+  font-family: "Lato", sans-serif;
+  margin-left: 0.6em;
+}
 
-.btnEdi {
+.btnEdi:hover {
   background: #6d72c3;
 }
 
-.btnDes {
+.btnDes:hover {
   background: #6d72c3;
 }
 
-.btnEli {
+.btnEli:hover {
   background: #c73434;
 }
 
@@ -99,6 +109,8 @@ body {
 header {
   width: 100%;
   color: #6d72c3;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 header .fila {
   width: 90%;
@@ -118,6 +130,8 @@ header .fila .columna nav a {
 
 main {
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 main .contenedorPrincipal {
   width: 90%;
@@ -150,7 +164,7 @@ main .contenedorPrincipal .seccionDash .fila .menuDash h1 {
   font-size: 1.2em;
 }
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida {
-  width: 16%;
+  width: 18%;
   max-width: 200px;
 }
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form {
@@ -160,7 +174,7 @@ main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form {
 }
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar {
   position: relative;
-  padding: 0.6em;
+  padding: 0.6em 0;
   border-radius: 10px;
   transition: background 0.5s ease;
 }
@@ -236,81 +250,84 @@ main .contenedorPrincipal .seccionDash .fila .progresoSubida .contenedorProgreso
   font-size: 0.8em;
   border-radius: 50px;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla {
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos {
   width: 100%;
-  min-width: 620px;
+  margin: 1em 0;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table {
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td,
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr th {
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding {
+  width: 20%;
   padding: 1em;
-  text-align: left;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .btnPrev:hover {
-  cursor: pointer;
-  background: rgba(0, 0, 0, 0.082);
-}
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td {
-  color: #414141;
-  border-bottom: 2px solid #b8b8b8;
-}
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td:first-child {
-  padding: 0em;
-}
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .miniatura {
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo {
   width: 100%;
-  max-width: 35px;
-  max-height: 35px;
-  aspect-ratio: 1/1;
+  background: #e0e0e0;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.137);
+  border-radius: 10px;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .miniaturaArchivo {
+  cursor: pointer;
+  width: 100%;
+  height: 160px;
+  background: rgba(0, 0, 0, 0.151);
+  border-radius: 10px 10px 0 0;
   text-align: center;
   overflow: hidden;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .miniatura img {
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .miniaturaArchivo img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .miniatura p {
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .miniaturaArchivo video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .miniaturaArchivo p {
+  margin: 0.8em 0;
   color: #727272;
-  font-size: 1.8em;
+  font-size: 4em;
   font-family: "FASolid";
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar {
-  position: absolute;
-  border-radius: 20px;
-  background: #8f8f8f;
-  right: 0px;
-  padding: 1em;
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo {
+  color: #2e2e2e;
+  font-size: 0.8em;
+  position: relative;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar p {
-  color: white;
-}
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar input,
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar button {
-  color: white;
-  margin: 0.4em 0.2em;
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo .contNombre {
   padding: 0.6em;
-  border-radius: 10px;
-  border: none;
-  font-family: "Lato", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar button {
-  background: none;
-  cursor: pointer;
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo .contNombre .nombreArchivo {
+  width: 95%;
+  height: 1.1em;
+  overflow: hidden;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar input[type=submit] {
-  background: #42457a;
-  cursor: pointer;
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo .contNombre .iconoMenu {
+  width: 5%;
+  font-family: "FASolid";
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr td .formEditar input[type=text] {
-  color: #414141;
-  outline: none;
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo .contInfo {
+  color: gray;
+  padding: 0 0.6em 0.8em 0.6em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .grande {
-  width: 29%;
-}
-main .contenedorPrincipal .seccionDash .fila .contenedorTabla table tr .chico {
-  width: 3%;
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo .contOpciones {
+  position: absolute;
+  right: 0px;
+  top: 30px;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.836);
 }
 main .contenedorPrincipal .seccionDash .fila .contenidoEliminar {
   margin: 1em 0;
@@ -358,6 +375,33 @@ footer .fila {
   padding: 2em;
   text-align: center;
   color: white;
+}
+
+@media screen and (max-width: 950px) {
+  main .contenedorPrincipal {
+    width: 95%;
+  }
+  main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida {
+    max-width: 200px;
+    min-width: 200px;
+  }
+  main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding {
+    width: 33%;
+  }
+}
+@media screen and (max-width: 480px) {
+  main .contenedorPrincipal .seccionDash .fila .menuDash {
+    width: 95%;
+    margin: 0 auto;
+  }
+  main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida {
+    min-width: 180px;
+    max-width: 200px;
+  }
+  main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding {
+    width: 50%;
+    padding: 0.4em;
+  }
 }
 
 /*# sourceMappingURL=estilos.css.map */

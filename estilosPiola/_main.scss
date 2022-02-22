@@ -1,0 +1,250 @@
+main {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	.contenedorPrincipal {
+		width: 90%;
+		margin: 0 auto 1em auto;
+		.seccionDash {
+			border-radius: 20px;
+			padding: 1em 0;
+			.filaProgresoSubida {
+				margin: 1em 0;
+				// display: flex;
+				flex-direction: row;
+				justify-content: flex-end;
+				align-items: center;
+			}
+			.fila {
+				width: 100%;
+				position: relative;
+				.columna {
+					display: flex;
+					flex-direction: row;
+				}
+				.menuDash {
+					width: 100%;
+					align-items: center;
+					justify-content: space-between;
+					h1 {
+						font-size: 1.2em;
+					}
+					.contFormSubida {
+						width: 18%;
+						max-width: 200px;
+
+						form {
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							.btnCargar {
+								position: relative;
+								padding: 0.6em 0;
+								border-radius: 10px;
+								transition: background 0.5s ease;
+								&:hover {
+									background: rgba(0, 0, 0, 0.075);
+								}
+								.puntoRojo {
+									position: absolute;
+									width: 8px;
+									height: 8px;
+									border-radius: 50%;
+									background: #c73434;
+									right: 6px;
+								}
+								p {
+									color: #6d72c3;
+									font-weight: 900;
+									// z-index: 1;
+								}
+								.inpArchivo {
+									position: absolute;
+									top: 0px;
+									left: 0px;
+									right: 0px;
+									bottom: 0px;
+									width: 100%;
+									height: 100%;
+									opacity: 0;
+									cursor: pointer;
+									// z-index: 2;
+								}
+							}
+							input[type="submit"] {
+								padding: 0.6em;
+								font-size: 1em;
+								font-weight: 900;
+								border: none;
+								background: #6d72c3;
+								color: white;
+								border-radius: 10px;
+								cursor: pointer;
+								transition: background 0.5s ease;
+								&:hover {
+									background: #4d5088;
+								}
+							}
+						}
+					}
+				}
+				.colBtnCancelar {
+					input {
+						margin: 0 1em 0 0;
+						padding: 0.2em 0.6em;
+						font-family: "Lato", sans-serif;
+						font-weight: 900;
+						background: #c73434;
+						color: white;
+						border: none;
+						border-radius: 10px;
+						cursor: pointer;
+					}
+				}
+				.progresoSubida {
+					width: 16%;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-end;
+					.contenedorProgreso {
+						width: 100%;
+						max-width: 200px;
+						background: rgb(199, 199, 199);
+						border-radius: 50px;
+						#indicadorPorc {
+							display: block;
+							background: #6d72c3;
+							color: white;
+							text-align: center;
+							font-family: "Lato", sans-serif;
+							font-size: 0.8em;
+							border-radius: 50px;
+						}
+					}
+				}
+				.contenedorPanelDeArchivos {
+					width: 100%;
+					margin: 1em 0;
+					.contenedorArchivos {
+						width: 100%;
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						.contenedorPadding {
+							width: 20%;
+							padding: 1em;
+							.contenedorArchivo {
+								width: 100%;
+								background: #e0e0e0;
+								box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.137);
+								border-radius: 10px;
+								.miniaturaArchivo {
+									cursor: pointer;
+									width: 100%;
+									// max-width: 35px;
+									height: 160px;
+									background: rgba(0, 0, 0, 0.151);
+									border-radius: 10px 10px 0 0;
+									text-align: center;
+									overflow: hidden;
+									// display: flex;
+									// flex-direction: column;
+									// justify-content: center;
+									img {
+										width: 100%;
+										height: 100%;
+										object-fit: cover;
+									}
+									video {
+										width: 100%;
+										height: 100%;
+										object-fit: cover;
+									}
+									p {
+										margin: 0.8em 0;
+										color: rgb(114, 114, 114);
+										font-size: 4em;
+										font-family: "FASolid";
+									}
+								}
+								.infoArchivo {
+									color: rgb(46, 46, 46);
+									font-size: 0.8em;
+									position: relative;
+									.contNombre {
+										padding: 0.6em;
+										display: flex;
+										flex-direction: row;
+										align-items: center;
+										.nombreArchivo {
+											width: 95%;
+											height: 1.1em;
+											overflow: hidden;
+										}
+										.iconoMenu {
+											width: 5%;
+											font-family: "FASolid";
+										}
+									}
+									.contInfo {
+										color: rgb(128, 128, 128);
+										padding: 0 0.6em 0.8em 0.6em;
+										display: flex;
+										flex-direction: row;
+										align-items: center;
+									}
+									.contOpciones {
+										position: absolute;
+										right: 0px;
+										top: 30px;
+										// display: flex;
+										flex-direction: column;
+										background: rgba(0, 0, 0, 0.836);
+									}
+								}
+							}
+						}
+					}
+				}
+				.contenidoEliminar {
+					margin: 1em 0;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-end;
+					.contenedorFormEliminar {
+						display: flex;
+						flex-direction: column;
+						align-items: flex-end;
+						h2,
+						p,
+						div {
+							margin: 1em 0;
+							color: rgb(65, 65, 65);
+						}
+						.contenedorBotones {
+							a:first-child {
+								font-size: 1em;
+								color: rgb(65, 65, 65);
+							}
+							a:last-child {
+								padding: 0.6em;
+								margin-left: 1em;
+								font-size: 1em;
+								font-weight: 900;
+								border: none;
+								background: #c73434;
+								color: white;
+								border-radius: 10px;
+								cursor: pointer;
+								transition: background 0.5s ease;
+								&:hover {
+									background: #be5151;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

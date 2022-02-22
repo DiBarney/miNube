@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap");
 @font-face {
 	font-family: "FASolid";
-	src: url("../assets/font/fa-solid-900.ttf");
+	src: url("../assets/font/fa6-solid-900.otf");
 }
 html {
 	height: 100%;
@@ -17,21 +17,27 @@ a {
 .btnDes,
 .btnEli,
 .btnEdi {
-	font-family: "FASolid";
-	width: 90%;
-	padding: 0.4em 0.6em;
-	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	padding: 0.6em 1em;
 	color: white;
 	text-align: center;
 	cursor: pointer;
+	p:first-child {
+		font-family: "FASolid";
+	}
+	p:last-child {
+		font-family: "Lato", sans-serif;
+		margin-left: 0.6em;
+	}
 }
-.btnEdi {
+.btnEdi:hover {
 	background: #6d72c3;
 }
-.btnDes {
+.btnDes:hover {
 	background: #6d72c3;
 }
-.btnEli {
+.btnEli:hover {
 	background: #c73434;
 }
 body {
@@ -41,326 +47,8 @@ body {
 	font-weight: 400;
 	background: rgb(236, 236, 236);
 }
-.preVisualizador {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	z-index: 3;
-	background: rgba(0, 0, 0, 0.733);
-	.fila {
-		.equis {
-			padding: 2em 4em;
-			display: flex;
-			flex-direction: row;
-			justify-content: flex-end;
-			button {
-				background: none;
-				border: none;
-				font-size: 2em;
-				color: white;
-				cursor: pointer;
-			}
-		}
-		.contenedorMedia {
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			video,
-			img,
-			.prevArchivo {
-				box-shadow: 4px 4px 20px #000;
-			}
-			.contPrevArch {
-				.prevArchivo {
-					background: rgb(53, 53, 53);
-					border-radius: 10px;
-					width: 200px;
-					height: 200px;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					color: white;
-					font-size: 1.6em;
-					p:first-child {
-						font-family: "FASolid";
-						font-size: 4em;
-					}
-				}
-			}
-		}
-	}
-}
-header {
-	width: 100%;
-	color: #6d72c3;
-	.fila {
-		width: 90%;
-		padding: 2em 0;
-		margin: 0 auto;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		.columna {
-			font-size: 1em;
-			nav {
-				a {
-					color: rgb(65, 65, 65);
-				}
-			}
-		}
-	}
-}
-main {
-	width: 100%;
-	.contenedorPrincipal {
-		width: 90%;
-		margin: 0 auto 1em auto;
-		.seccionDash {
-			border-radius: 20px;
-			padding: 1em 0;
-			.filaProgresoSubida {
-				margin: 1em 0;
-				// display: flex;
-				flex-direction: row;
-				justify-content: flex-end;
-				align-items: center;
-			}
-			.fila {
-				width: 100%;
-				position: relative;
-				.columna {
-					display: flex;
-					flex-direction: row;
-				}
-				.menuDash {
-					width: 100%;
-					align-items: center;
-					justify-content: space-between;
-					h1 {
-						font-size: 1.2em;
-					}
-					.contFormSubida {
-						width: 16%;
-						max-width: 200px;
-						form {
-							display: flex;
-							flex-direction: row;
-							justify-content: space-between;
-							.btnCargar {
-								position: relative;
-								padding: 0.6em;
-								border-radius: 10px;
-								transition: background 0.5s ease;
-								&:hover {
-									background: rgba(0, 0, 0, 0.075);
-								}
-								.puntoRojo {
-									position: absolute;
-									width: 8px;
-									height: 8px;
-									border-radius: 50%;
-									background: #c73434;
-									right: 6px;
-								}
-								p {
-									color: #6d72c3;
-									font-weight: 900;
-									// z-index: 1;
-								}
-								.inpArchivo {
-									position: absolute;
-									top: 0px;
-									left: 0px;
-									right: 0px;
-									bottom: 0px;
-									width: 100%;
-									height: 100%;
-									opacity: 0;
-									cursor: pointer;
-									// z-index: 2;
-								}
-							}
-							input[type="submit"] {
-								padding: 0.6em;
-								font-size: 1em;
-								font-weight: 900;
-								border: none;
-								background: #6d72c3;
-								color: white;
-								border-radius: 10px;
-								cursor: pointer;
-								transition: background 0.5s ease;
-								&:hover {
-									background: #4d5088;
-								}
-							}
-						}
-					}
-				}
-				.colBtnCancelar {
-					input {
-						margin: 0 1em 0 0;
-						padding: 0.2em 0.6em;
-						font-family: "Lato", sans-serif;
-						font-weight: 900;
-						background: #c73434;
-						color: white;
-						border: none;
-						border-radius: 10px;
-						cursor: pointer;
-					}
-				}
-				.progresoSubida {
-					width: 16%;
-					display: flex;
-					flex-direction: column;
-					align-items: flex-end;
-					.contenedorProgreso {
-						width: 100%;
-						max-width: 200px;
-						background: rgb(199, 199, 199);
-						border-radius: 50px;
-						#indicadorPorc {
-							display: block;
-							background: #6d72c3;
-							color: white;
-							text-align: center;
-							font-family: "Lato", sans-serif;
-							font-size: 0.8em;
-							border-radius: 50px;
-						}
-					}
-				}
-				.contenedorTabla {
-					width: 100%;
-					min-width: 620px;
-					// overflow: scroll;
-					table {
-						width: 100%;
-						tr td,
-						tr th {
-							padding: 1em;
-							text-align: left;
-						}
-						tr .btnPrev:hover {
-							cursor: pointer;
-							background: rgba(0, 0, 0, 0.082);
-						}
-						tr td {
-							&:first-child {
-								padding: 0em;
-							}
-							.miniatura {
-								width: 100%;
-								max-width: 35px;
-								max-height: 35px;
-								aspect-ratio: 1/1;
-								text-align: center;
-								overflow: hidden;
-								img {
-									width: 100%;
-								}
-								p {
-									color: rgb(114, 114, 114);
-									font-size: 1.8em;
-									font-family: "FASolid";
-								}
-							}
-							color: rgb(65, 65, 65);
-							border-bottom: 2px solid rgb(184, 184, 184);
-							.formEditar {
-								position: absolute;
-								border-radius: 20px;
-								background: rgb(143, 143, 143);
-								right: 0px;
-								padding: 1em;
-								p {
-									color: white;
-								}
-								input,
-								button {
-									color: white;
-									margin: 0.4em 0.2em;
-									padding: 0.6em;
-									border-radius: 10px;
-									border: none;
-									font-family: "Lato", sans-serif;
-									// cursor: pointer;
-								}
-								button {
-									background: none;
-									cursor: pointer;
-								}
-								input[type="submit"] {
-									background: #42457a;
-									cursor: pointer;
-								}
-								input[type="text"] {
-									color: rgb(65, 65, 65);
-									outline: none;
-								}
-							}
-						}
-						tr .grande {
-							width: 29%;
-						}
-						tr .chico {
-							width: 3%;
-						}
-					}
-				}
-				.contenidoEliminar {
-					margin: 1em 0;
-					display: flex;
-					flex-direction: column;
-					align-items: flex-end;
-					.contenedorFormEliminar {
-						display: flex;
-						flex-direction: column;
-						align-items: flex-end;
-						h2,
-						p,
-						div {
-							margin: 1em 0;
-							color: rgb(65, 65, 65);
-						}
-						.contenedorBotones {
-							a:first-child {
-								font-size: 1em;
-								color: rgb(65, 65, 65);
-							}
-							a:last-child {
-								padding: 0.6em;
-								margin-left: 1em;
-								font-size: 1em;
-								font-weight: 900;
-								border: none;
-								background: #c73434;
-								color: white;
-								border-radius: 10px;
-								cursor: pointer;
-								transition: background 0.5s ease;
-								&:hover {
-									background: #be5151;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
 
-footer {
-	background: rgba(0, 0, 0, 0.507);
-	bottom: 0px;
-	.fila {
-		width: 100%;
-		padding: 2em;
-		text-align: center;
-		color: white;
-	}
-}
+@import "headeryprev";
+@import "main";
+@import "footer";
+@import "responsive";
