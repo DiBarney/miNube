@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller {
 	public function index(){
         if($this->session->userdata('correo')){
             $cont['archivos'] = $this->mostrarArchivos();
+            $cont['tituloPagina'] = 'Mi Dashboard';
             $this->load->view('Dashboard',$cont);
             // var_dump($this->mostrarArchivos());
         }else{
@@ -114,7 +115,10 @@ class Dashboard extends CI_Controller {
         redirect('Dashboard');
     }
 
-    // Función para crear las miniaturas de las imagenes con la libreria image_lib de CI
+/*
+ ---------------------------------------------- Función crearThumb
+ Función para crear las miniaturas de las imagenes con la libreria image_lib de CI
+*/
     function crearThumb($filename){
         $this->load->library('image_lib');
         $config['image_library'] = 'gd2';
@@ -162,6 +166,20 @@ class Dashboard extends CI_Controller {
     // Función mostrarArchivos devuelve una respuesta de tipo MySQL
     public function mostrarArchivos(){
         return $this->DashboardDB->devolverArchivos();
+    }
+
+    // Función mostrarArchivos devuelve una respuesta de tipo MySQL
+    public function imagenes(){
+        $cont['archivos'] = $this->DashboardDB->devolverArchivosTipo(1,11);
+        $cont['tituloPagina'] = 'Imagenes Frinnert';
+        $this->load->view('Dashboard',$cont);
+    }
+
+    // Función mostrarArchivos devuelve una respuesta de tipo MySQL
+    public function audiovisuales(){
+        $cont['archivos'] =  $this->DashboardDB->devolverArchivosTipo('2','3');
+        $cont['tituloPagina'] = 'Audiovisuales';
+        $this->load->view('Dashboard',$cont);
     }
 
     // Funcion devolverRuta es llamada por JS de forma asincrona para mostrar las previsualizaciones

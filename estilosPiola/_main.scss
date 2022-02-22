@@ -136,8 +136,11 @@ main {
 							.contenedorArchivo {
 								width: 100%;
 								background: #e0e0e0;
-								box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.137);
 								border-radius: 10px;
+								transition: box-shadow 0.2s ease;
+								&:hover {
+									box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+								}
 								.miniaturaArchivo {
 									cursor: pointer;
 									width: 100%;

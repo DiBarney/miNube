@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     
     for (let btnPre of btnsPrev) {
         btnPre.addEventListener('click',()=>{
-            fetch('Dashboard/devolverRuta/'+btnPre.id,{
+            fetch('http://192.168.0.15/miNube/index.php/Dashboard/devolverRuta/'+btnPre.id,{
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -61,14 +61,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                     case "1":
                         reprouctor.style.display = "none";
                         prevArchivo.style.display = "none";
-                        fuenteImg.src = `../${datosArchivo.ruta}`;
+                        fuenteImg.src = `http://192.168.0.15/miNube/${datosArchivo.ruta}`;
                         fuenteImg.style.display = "block";
                         preVisualizador.style.display = 'block';
                         break;
                     case "2":
                         fuenteImg.style.display = "none";
                         prevArchivo.style.display = "none";
-                        // fuenteVideo.src = `http://localhost/miNube/cargados/${datosArchivo.nombre}`;
+                        // fuenteVideo.src = `http://192.168.0.15/miNube/cargados/${datosArchivo.nombre}`;
                         // leerVideo();
                         // reprouctor.style.display = "block";
                         break;
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         var ajax = new XMLHttpRequest();
         ajax.upload.addEventListener('progress',mostrarProgreso,false);
         ajax.addEventListener('load',mostrarCompleto,false);
-        ajax.open('POST','Dashboard/subirArchivo');
+        ajax.open('POST','http://192.168.0.15/miNube/index.php/Dashboard/subirArchivo');
         ajax.send(formData);
         filaProgresoSubida.style.display = "flex";
 
