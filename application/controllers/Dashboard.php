@@ -15,7 +15,9 @@ class Dashboard extends CI_Controller {
         if($this->session->userdata('correo')){
             $cont['archivos'] = $this->mostrarArchivos();
             $cont['tituloPagina'] = 'Mi Dashboard';
+            $this->load->view('comun/head',$cont);
             $this->load->view('Dashboard',$cont);
+            $this->load->view('comun/footer');
             // var_dump($this->mostrarArchivos());
         }else{
             redirect('Login');
@@ -32,10 +34,17 @@ class Dashboard extends CI_Controller {
             // Eliminando carácteres reservados para la url, para que no haya problemas con la funcion unlink
             $charReservados = [" ","!","#","$","%","&","'","(",")","*","+",",","/",":",";","=","?","@","[","]"];
             $nombre = $archivo['name'];
+            $extencion = substr($nombre,strpos($nombre,".")+1);
+            $nombre = substr($nombre,0,strpos($nombre,"."));
             foreach ($charReservados as $character) {
                 $nombre = str_replace($character,"_",$nombre);
             }
 
+            // Verificando que no haya ya un arhcivo con el mismo nombre, de ser asi, se asignará un nuevo nombre
+            while(file_exists($directorio.$nombre.'.'.$extencion)){
+                $nombre .= '1';
+            }
+            $nombre .= '.'.$extencion;
             // Declaración definitiva de la ruta, la fecha y procesamiento del tamaño y el tipo
             $ruta = $directorio . $nombre;
             $tamanoKb = $archivo['size']*0.001;
@@ -44,7 +53,6 @@ class Dashboard extends CI_Controller {
             $tipoStr = substr($tipoStr,0,strpos($tipoStr,"/"));
             
             // Asignación de un numero en función de su tipo y su extención (Esto es para visualizar los iconos o las miniaturas)
-            $extencion = substr($nombre,strpos($nombre,".")+1);
             switch($tipoStr){
                 // Tipo imagen: descartados svg e ico para crear thumb, las demas extenciones tendran su miniatura
                 case 'image':
@@ -60,7 +68,7 @@ class Dashboard extends CI_Controller {
                 // Tipo audio: pendiente para una previsualización
                 case 'audio': $tipo = 3;
                 break;
-                // Tipo application: los candidatos a tener un icono especial de momento son pdf, archivos de office y sql, los demas tendran un icono de archivo
+                // Tipo application: los candidatos a tener un icono especial de momento son pdf, archivos de office, sql y zip, los demas tendran un icono de archivo
                 case 'application': 
                     switch ($extencion) {
                         case 'pdf':
@@ -78,6 +86,10 @@ class Dashboard extends CI_Controller {
                         case 'sql':
                             $tipo = 45;
                             break;
+                        case 'zip':
+                        case 'rar':
+                            $tipo = 46;
+                            break;
                         default:
                             $tipo = 6;
                             break;
@@ -91,7 +103,11 @@ class Dashboard extends CI_Controller {
             }
 
             // Condicional para desplegar el tamaño en KB o en MB (esta ya es la variable definitiva que se enviara a BD)
-            if($tamanoKb>1024.0){
+            if($tamanoKb>1000000.0){
+                $tamanoKb /= 1000000.0;
+                $tamano = number_format($tamanoKb,2);
+                $tamano .= ' GB';
+            }else if($tamanoKb>1024.0){
                 $tamanoKb /= 1024.0;
                 $tamano = number_format($tamanoKb,2);
                 $tamano .= ' MB';
@@ -168,18 +184,33 @@ class Dashboard extends CI_Controller {
         return $this->DashboardDB->devolverArchivos();
     }
 
+    public function mostrarArchivosAs(){
+        $archivos = $this->DashboardDB->devolverArchivos();
+        $datosArchivos = [];
+        while($fila = mysqli_fetch_array($archivos)){
+            if($fila['tipo'] == '1' || $fila['tipo'] == '11'){
+                array_push($datosArchivos,$fila);
+            }
+        }
+        echo json_encode($datosArchivos);
+    }
+
     // Función mostrarArchivos devuelve una respuesta de tipo MySQL
     public function imagenes(){
         $cont['archivos'] = $this->DashboardDB->devolverArchivosTipo(1,11);
-        $cont['tituloPagina'] = 'Imagenes Frinnert';
+        $cont['tituloPagina'] = 'Imágenes Frinnert';
+        $this->load->view('comun/head',$cont);
         $this->load->view('Dashboard',$cont);
+        $this->load->view('comun/footer');
     }
 
     // Función mostrarArchivos devuelve una respuesta de tipo MySQL
     public function audiovisuales(){
         $cont['archivos'] =  $this->DashboardDB->devolverArchivosTipo('2','3');
         $cont['tituloPagina'] = 'Audiovisuales';
+        $this->load->view('comun/head',$cont);
         $this->load->view('Dashboard',$cont);
+        $this->load->view('comun/footer');
     }
 
     // Funcion devolverRuta es llamada por JS de forma asincrona para mostrar las previsualizaciones
@@ -193,7 +224,10 @@ class Dashboard extends CI_Controller {
         $consultaArchivo = $this->DashboardDB->devolverArchivo($id);
         $cont['nombreArchivo'] = $consultaArchivo[0]->nombre;
         $cont['idArchivo'] = $id;
+        $cont['tituloPagina'] = 'Confirmar para eliminar';
+        $this->load->view('comun/head',$cont);
         $this->load->view('accion/confirmarEliminar',$cont);
+        $this->load->view('comun/footer');
     }
 
 }

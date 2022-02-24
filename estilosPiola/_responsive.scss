@@ -18,6 +18,9 @@
 							}
 						}
 					}
+					.progresoSubida {
+						width: 26%;
+					}
 				}
 			}
 		}
@@ -25,6 +28,18 @@
 }
 
 @media screen and (max-width: 480px) {
+	.preVisualizador {
+		.fila {
+			.contPrev {
+				.contenedorMedia {
+					img {
+						width: 200px;
+						height: auto;
+					}
+				}
+			}
+		}
+	}
 	main {
 		.contenedorPrincipal {
 			.seccionDash {
@@ -45,6 +60,9 @@
 								padding: 0.4em;
 							}
 						}
+					}
+					.progresoSubida {
+						width: 50%;
 					}
 				}
 			}

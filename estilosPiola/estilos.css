@@ -79,17 +79,32 @@ body {
   color: white;
   cursor: pointer;
 }
-.preVisualizador .fila .contenedorMedia {
+.preVisualizador .fila .contPrev {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.preVisualizador .fila .contPrev #izqPrev,
+.preVisualizador .fila .contPrev #derPrev {
+  cursor: pointer;
+}
+.preVisualizador .fila .contPrev .contenedorMedia {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.preVisualizador .fila .contenedorMedia video,
-.preVisualizador .fila .contenedorMedia img,
-.preVisualizador .fila .contenedorMedia .prevArchivo {
+.preVisualizador .fila .contPrev .contenedorMedia video,
+.preVisualizador .fila .contPrev .contenedorMedia img,
+.preVisualizador .fila .contPrev .contenedorMedia .prevArchivo {
   box-shadow: 4px 4px 20px #000;
 }
-.preVisualizador .fila .contenedorMedia .contPrevArch .prevArchivo {
+.preVisualizador .fila .contPrev .contenedorMedia img {
+  height: 500px;
+}
+.preVisualizador .fila .contPrev .contenedorMedia .contPrevArch .prevArchivo {
   background: #353535;
   border-radius: 10px;
   width: 200px;
@@ -101,7 +116,7 @@ body {
   color: white;
   font-size: 1.6em;
 }
-.preVisualizador .fila .contenedorMedia .contPrevArch .prevArchivo p:first-child {
+.preVisualizador .fila .contPrev .contenedorMedia .contPrevArch .prevArchivo p:first-child {
   font-family: "FASolid";
   font-size: 4em;
 }
@@ -200,6 +215,7 @@ main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btn
 }
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar:hover {
   background: rgba(0, 0, 0, 0.075);
+  cursor: pointer;
 }
 main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btnCargar .puntoRojo {
   position: absolute;
@@ -312,14 +328,19 @@ main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contene
   height: 100%;
   object-fit: cover;
 }
+main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .miniaturaArchivo audio {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .miniaturaArchivo p {
   margin: 0.8em 0;
-  color: #727272;
+  color: #808080;
   font-size: 4em;
   font-family: "FASolid";
 }
 main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo {
-  color: #2e2e2e;
+  color: #414141;
   font-size: 0.8em;
   position: relative;
 }
@@ -339,7 +360,7 @@ main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contene
   font-family: "FASolid";
 }
 main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding .contenedorArchivo .infoArchivo .contInfo {
-  color: gray;
+  color: #808080;
   padding: 0 0.6em 0.8em 0.6em;
   display: flex;
   flex-direction: row;
@@ -411,8 +432,16 @@ footer .fila {
   main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding {
     width: 33%;
   }
+  main .contenedorPrincipal .seccionDash .fila .progresoSubida {
+    width: 26%;
+  }
 }
 @media screen and (max-width: 480px) {
+  .preVisualizador .fila .contPrev .contenedorMedia img {
+    width: 200px;
+    height: auto;
+  }
+
   main .contenedorPrincipal .seccionDash .fila .menuDash {
     width: 95%;
     margin: 0 auto;
@@ -424,6 +453,9 @@ footer .fila {
   main .contenedorPrincipal .seccionDash .fila .contenedorPanelDeArchivos .contenedorArchivos .contenedorPadding {
     width: 50%;
     padding: 0.4em;
+  }
+  main .contenedorPrincipal .seccionDash .fila .progresoSubida {
+    width: 50%;
   }
 }
 

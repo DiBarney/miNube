@@ -44,17 +44,18 @@ main {
 								transition: background 0.5s ease;
 								&:hover {
 									background: rgba(0, 0, 0, 0.075);
+									cursor: pointer;
 								}
 								.puntoRojo {
 									position: absolute;
 									width: 8px;
 									height: 8px;
 									border-radius: 50%;
-									background: #c73434;
+									background: $advertencia;
 									right: 6px;
 								}
 								p {
-									color: #6d72c3;
+									color: $primario;
 									font-weight: 900;
 									// z-index: 1;
 								}
@@ -76,7 +77,7 @@ main {
 								font-size: 1em;
 								font-weight: 900;
 								border: none;
-								background: #6d72c3;
+								background: $primario;
 								color: white;
 								border-radius: 10px;
 								cursor: pointer;
@@ -94,7 +95,7 @@ main {
 						padding: 0.2em 0.6em;
 						font-family: "Lato", sans-serif;
 						font-weight: 900;
-						background: #c73434;
+						background: $advertencia;
 						color: white;
 						border: none;
 						border-radius: 10px;
@@ -113,7 +114,7 @@ main {
 						border-radius: 50px;
 						#indicadorPorc {
 							display: block;
-							background: #6d72c3;
+							background: $primario;
 							color: white;
 							text-align: center;
 							font-family: "Lato", sans-serif;
@@ -163,15 +164,20 @@ main {
 										height: 100%;
 										object-fit: cover;
 									}
+									audio {
+										width: 100%;
+										height: 100%;
+										object-fit: cover;
+									}
 									p {
 										margin: 0.8em 0;
-										color: rgb(114, 114, 114);
+										color: $claroSecundario;
 										font-size: 4em;
 										font-family: "FASolid";
 									}
 								}
 								.infoArchivo {
-									color: rgb(46, 46, 46);
+									color: $oscuroPrimario;
 									font-size: 0.8em;
 									position: relative;
 									.contNombre {
@@ -190,7 +196,7 @@ main {
 										}
 									}
 									.contInfo {
-										color: rgb(128, 128, 128);
+										color: $claroSecundario;
 										padding: 0 0.6em 0.8em 0.6em;
 										display: flex;
 										flex-direction: row;
@@ -222,12 +228,12 @@ main {
 						p,
 						div {
 							margin: 1em 0;
-							color: rgb(65, 65, 65);
+							color: $oscuroPrimario;
 						}
 						.contenedorBotones {
 							a:first-child {
 								font-size: 1em;
-								color: rgb(65, 65, 65);
+								color: $oscuroPrimario;
 							}
 							a:last-child {
 								padding: 0.6em;
@@ -235,7 +241,7 @@ main {
 								font-size: 1em;
 								font-weight: 900;
 								border: none;
-								background: #c73434;
+								background: $advertencia;
 								color: white;
 								border-radius: 10px;
 								cursor: pointer;

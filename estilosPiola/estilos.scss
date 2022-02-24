@@ -3,6 +3,11 @@
 	font-family: "FASolid";
 	src: url("../assets/font/fa6-solid-900.otf");
 }
+$primario: #6d72c3;
+$oscuroPrimario: #414141;
+$claroSecundario: #808080;
+$advertencia: #c73434;
+
 html {
 	height: 100%;
 }
@@ -32,13 +37,13 @@ a {
 	}
 }
 .btnEdi:hover {
-	background: #6d72c3;
+	background: $primario;
 }
 .btnDes:hover {
-	background: #6d72c3;
+	background: $primario;
 }
 .btnEli:hover {
-	background: #c73434;
+	background: $advertencia;
 }
 body {
 	height: 100%;
