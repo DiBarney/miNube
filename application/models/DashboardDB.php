@@ -22,6 +22,11 @@ class DashboardDB extends CI_model{
         return $consultaArchivos->result_id;
     }
 
+    public function devolverArchivosTipo($tipoUno, $tipoDos){
+        $consultaArchivos = $this->db->query("SELECT * FROM archivo_cargado WHERE tipo='$tipoUno' OR tipo='$tipoDos';");
+        return $consultaArchivos->result_id;
+    }
+
     public function devolverArchivo($id){
         $consultaArchivos = $this->db->query("SELECT * FROM archivo_cargado WHERE id = '$id';");
         return $consultaArchivos->result();

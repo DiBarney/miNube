@@ -1,0 +1,53 @@
+@media screen and (max-width: 950px) {
+	main {
+		.contenedorPrincipal {
+			width: 95%;
+			.seccionDash {
+				.fila {
+					.menuDash {
+						.contFormSubida {
+							// width: 24%;
+							max-width: 200px;
+							min-width: 200px;
+						}
+					}
+					.contenedorPanelDeArchivos {
+						.contenedorArchivos {
+							.contenedorPadding {
+								width: 33%;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 480px) {
+	main {
+		.contenedorPrincipal {
+			.seccionDash {
+				.fila {
+					.menuDash {
+						width: 95%;
+						margin: 0 auto;
+						.contFormSubida {
+							// width: 24%;
+							min-width: 180px;
+							max-width: 200px;
+						}
+					}
+					.contenedorPanelDeArchivos {
+						.contenedorArchivos {
+							.contenedorPadding {
+								width: 50%;
+								padding: 0.4em;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

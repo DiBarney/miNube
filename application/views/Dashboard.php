@@ -20,7 +20,7 @@
                 <video style="display: none;" height="400px" id="reprouctor" controls>
                     <source id="fuenteVideo" src="">
                 </video>
-                <img style="display: none;" id="fuenteImg" src="" alt="prev" width="500px">
+                <img style="display: none;" id="fuenteImg" src="" alt="prev" height="500px">
                 <div class="contPrevArch" id="prevArchivo" style="display: none;">
                     <div class="prevArchivo">
                         <p></p>
@@ -32,13 +32,15 @@
     </section>
     <header>
         <div class="fila cabeceraLogin">
-            <div class="columna">
-                <h2>Mi Nube</h2>
+            <div class="columna titulo">
+                <a href="<?= base_url('index.php/Dashboard')?>"><h2>Mi Nube</h2></a>
             </div>
-            <div class="columna">
+            <div class="columna columnaNav">
                 <nav>
+                    <a href="<?= base_url('index.php/Dashboard/imagenes')?>">Imagenes</a>
+                    <a href="<?= base_url('index.php/Dashboard/audiovisuales')?>">Audiovisuales</a>
                     <?php if($this->session->userdata('correo')):?>
-                        <a href="<?= site_url('Login/cerrarSesion') ?>">Cerrar Sesión</a>
+                        <a href="<?= site_url('Login/cerrarSesion') ?>" class="iconoLogout"></a>
                     <?php else: ?>
                         <a href="<?= site_url('Login/') ?>">Iniciar Sesión</a>
                     <?php endif; ?>
@@ -52,7 +54,7 @@
             <section class="seccionDash">
                 <div class="fila">
                     <div class="columna menuDash">
-                        <h1>Mi Dashboard</h1>
+                        <h1><?= $tituloPagina?></h1>
                         <div class="contFormSubida">
                             <form method="POST" enctype="multipart/form-data">
                                 <div class="btnCargar">
@@ -76,52 +78,59 @@
                     </div>
                 </div>
                 <div class="fila">
-                    <div class="columna contenedorTabla">
-                        <table>
-                            <tr>
-                                <th class="chico"></th>
-                                <th class="grande">Nombre</th>
-                                <th class="grande">Tamaño</th>
-                                <th class="grande">Fecha de Modificación</th>
-                                <th class="chico"></th>
-                                <th class="chico"></th>
-                                <th class="chico"></th>
-                            </tr>
+                    <div class="columna contenedorPanelDeArchivos">
+                        <!-- Tambien intentar hacer una "tabla" con divs y poder cambiar de modo -->
+                        <div class="contenedorArchivos">
                             <?php while($fila = mysqli_fetch_array($archivos)){?>
-                            <tr>
-                                <td>
-                                    <div class="miniatura">
+                            <div class="contenedorPadding">
+                                <div class="contenedorArchivo">
+                                    <div class="miniaturaArchivo btnPrev" id="<?=$fila['id']?>">
                                         <?php if($fila['tipo'] == '1') {?>
-                                            <!-- <p></p> -->
-                                            <img src="<?= base_url('/cargados/thumbs/').$fila['nombre']?>">
+                                            <img src="<?= base_url('/cargados/').$fila['nombre']?>">
+                                        <?php }else if($fila['tipo'] == '11'){?>
+                                            <p></p>
                                         <?php }else if($fila['tipo'] == '2'){?>
-                                            <p></p>
+                                            <video src="<?= base_url('/cargados/').$fila['nombre']?>" controls>
+                                        <?php }else if($fila['tipo'] == '3'){?>
+                                            <p></p>
+                                        <?php }else if($fila['tipo'] == '41'){?>
+                                            <p></p>
+                                        <?php }else if($fila['tipo'] == '42'){?>
+                                            <p></p>
+                                        <?php }else if($fila['tipo'] == '43'){?>
+                                            <p></p>
+                                        <?php }else if($fila['tipo'] == '44'){?>
+                                            <p></p>
+                                        <?php }else if($fila['tipo'] == '45'){?>
+                                            <p></p>
+                                        <?php }else if($fila['tipo'] == '5'){?>
+                                            <p></p>
                                         <?php }else{?>
                                             <p></p>
                                         <?php }?>
                                     </div>
-                                </td>
-                                <td id="<?=$fila['id']?>" class="btnPrev"><?= $fila['nombre']?></td>
-                                <td><?= $fila['tamano']?></td>
-                                <td><?= $fila['fecha']?></td>
-                                <td>
-                                    <a class="btnEdi"></a>
-                                    <div class="formEditar" style="display: none;">
-                                        <form action="<?=base_url('index.php/Dashboard/modificarArchivo/'.$fila['id'].'/'.$fila['nombre'])?>" method="POST">
-                                            <p>Renombrar</p>
-                                            <input type="text" name="nombreEditado" id="nombreEditado" value="<?= $fila['nombre']?>">
-                                            <div class="contenedorBotones">
-                                                <button type="button" class="btnCancelarEditar">Cancelar</button>
-                                                <input type="submit" value="Actualizar">
-                                            </div>
-                                        </form>
+                                    <div class="infoArchivo">
+                                        <div class="contNombre">
+                                            <p class="nombreArchivo"><?= $fila['nombre']?></p>
+                                            <p class="iconoMenu"></p>
+                                        </div>
+                                        <div class="contInfo" style="display:flex;flex-direction:row;">
+                                            <p class="tamanoArchivo"><?= $fila['tamano']?> - <?= $fila['fecha']?></p>
+                                        </div>
+                                        <div class="contOpciones" style="display: none;">
+                                            <a href="<?= base_url()."index.php/Dashboard/descargarArchivo/".$fila['nombre']?>" class="btnDes">
+                                                <p></p><p>Descargar</p>
+                                            </a>
+                                            <a href="<?= base_url()."index.php/Dashboard/confirmarEliminar/".$fila['id']?>" class="btnEli">
+                                                <p></p><p>Eliminar</p>
+                                            </a>
+                                        </div>
                                     </div>
-                                </td>
-                                <td><a href="<?= base_url()."index.php/Dashboard/descargarArchivo/".$fila['nombre']?>" class="btnDes"></a></td>
-                                <td><a href="<?= base_url()."index.php/Dashboard/confirmarEliminar/".$fila['id']?>" class="btnEli"></a></td>
-                            </tr>
+                                </div>
+                            </div>
                             <?php }?>
-                        </table>
+                        </div>
+                        
                     </div>
                 </div>
             </section>
@@ -130,7 +139,7 @@
     
     <footer>
         <div class="fila">
-            <p>MiNube - By Barney 2022</p>
+            <p>MiNube con Panel de Divs - By Barney 2022</p>
         </div>
     </footer>
     <script src="<?= base_url('assets/js/fnDashboard.js')?>"></script>
