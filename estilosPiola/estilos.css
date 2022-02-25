@@ -103,6 +103,7 @@ body {
 }
 .preVisualizador .fila .contPrev .contenedorMedia img {
   height: 500px;
+  max-width: 1000px;
 }
 .preVisualizador .fila .contPrev .contenedorMedia .contPrevArch .prevArchivo {
   background: #353535;
@@ -240,7 +241,7 @@ main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form .btn
   opacity: 0;
   cursor: pointer;
 }
-main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form input[type=submit] {
+main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form input[type=button] {
   padding: 0.6em;
   font-size: 1em;
   font-weight: 900;
@@ -251,7 +252,7 @@ main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form inpu
   cursor: pointer;
   transition: background 0.5s ease;
 }
-main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form input[type=submit]:hover {
+main .contenedorPrincipal .seccionDash .fila .menuDash .contFormSubida form input[type=button]:hover {
   background: #4d5088;
 }
 main .contenedorPrincipal .seccionDash .fila .colBtnCancelar input {
@@ -422,6 +423,11 @@ footer .fila {
 }
 
 @media screen and (max-width: 950px) {
+  .preVisualizador .fila .contPrev .contenedorMedia img {
+    width: 350px;
+    height: auto;
+  }
+
   main .contenedorPrincipal {
     width: 95%;
   }

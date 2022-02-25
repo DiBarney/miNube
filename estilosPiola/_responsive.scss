@@ -1,4 +1,16 @@
 @media screen and (max-width: 950px) {
+	.preVisualizador {
+		.fila {
+			.contPrev {
+				.contenedorMedia {
+					img {
+						width: 350px;
+						height: auto;
+					}
+				}
+			}
+		}
+	}
 	main {
 		.contenedorPrincipal {
 			width: 95%;

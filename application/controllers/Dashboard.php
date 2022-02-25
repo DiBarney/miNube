@@ -30,11 +30,11 @@ class Dashboard extends CI_Controller {
     public function subirArchivo(){
         $directorio = "cargados/";
 
-        foreach ($_FILES as $archivo) {
+        /* foreach ($_FILES as $archivo) {
             // Eliminando carácteres reservados para la url, para que no haya problemas con la funcion unlink
             $charReservados = [" ","!","#","$","%","&","'","(",")","*","+",",","/",":",";","=","?","@","[","]"];
             $nombre = $archivo['name'];
-            $extencion = substr($nombre,strpos($nombre,".")+1);
+            $extencion = substr($nombre,strrpos($nombre,".")+1);
             $nombre = substr($nombre,0,strpos($nombre,"."));
             foreach ($charReservados as $character) {
                 $nombre = str_replace($character,"_",$nombre);
@@ -127,8 +127,123 @@ class Dashboard extends CI_Controller {
             }else{
                 echo "Error al subir archivo";
             }
+        } */
+        
+        foreach ($_FILES as $archivo) {
+            // Eliminando carácteres reservados para la url, para que no haya problemas con la funcion unlink
+            //$charReservados = [" ","!","#","$","%","&","'","(",")","*","+",",","/",":",";","=","?","@","[","]"];
+            $nombre = $archivo['name'];
+            $extencion = substr($nombre,strrpos($nombre,".")+1);
+
+            $tamanoKb = $archivo['size']*0.001;
+            $fecha = date("d/m/Y");
+            $tipoStr = $archivo['type'];
+            $tipoStr = substr($tipoStr,0,strpos($tipoStr,"/"));
+
+            $archivosExistentes = [];
+            $consultaRap = $this->DashboardDB->devolverArchivos();
+            while($field = mysqli_fetch_array($consultaRap)){
+                array_push($archivosExistentes,$field);
+            }
+            $indice = strval(($archivosExistentes[count($archivosExistentes)-1]['id'])+1);
+            var_dump($indice);
+            
+            // Asignación de un numero en función de su tipo y su extención (Esto es para visualizar los iconos o las miniaturas)
+            switch($tipoStr){
+                // Tipo imagen: descartados svg e ico para crear thumb, las demas extenciones tendran su miniatura
+                case 'image':
+                    if($extencion == 'svg'||$extencion == 'ico'){
+                        $tipo = 11;
+                    }else{
+                        $tipo = 1;
+                    }
+                    $nombre = 'Frinnert_image_'.$indice;
+                break;
+                // Tipo video: nada que reportar xd
+                case 'video': 
+                    $tipo = 2;
+                    $nombre = 'Frinnert_video_'.$indice;
+                break;
+                // Tipo audio: pendiente para una previsualización
+                case 'audio': 
+                    $tipo = 3;
+                    $nombre = 'Frinnert_audio_'.$indice;
+                break;
+                // Tipo application: los candidatos a tener un icono especial de momento son pdf, archivos de office, sql y zip, los demas tendran un icono de archivo
+                case 'application': 
+                    switch ($extencion) {
+                        case 'pdf':
+                            $tipo = 41;
+                            $nombre = 'Frinnert_pdf_'.$indice;
+                            break;
+                        case 'docx':
+                            $tipo = 42;
+                            $nombre = 'Frinnert_doc_'.$indice;
+                            break;
+                        case 'pptx':
+                            $tipo = 43;
+                            $nombre = 'Frinnert_slide_'.$indice;
+                            break;
+                        case 'xlsx':
+                            $tipo = 44;
+                            $nombre = 'Frinnert_sheet_'.$indice;
+                            break;
+                        case 'sql':
+                            $tipo = 45;
+                            $nombre = 'Frinnert_db_'.$indice;
+                            break;
+                        case 'zip':
+                        case 'rar':
+                            $tipo = 46;
+                            $nombre = 'Frinnert_file_'.$indice;
+                            break;
+                        default:
+                            $tipo = 6;
+                            $nombre = 'Frinnert_file_'.$indice;
+                            break;
+                    }
+                break;
+                // Tipo text: tendrá un icono de archivo de texto
+                case 'text': 
+                    $tipo = 5;
+                    $nombre = 'Frinnert_text_'.$indice;
+                break;
+                // Demas: cualquier otro tipo que no haya sido asignado tendra un icono de archivo
+                default : 
+                    $tipo = 6;
+                    $nombre = 'Frinnert_file_'.$indice;
+            }
+            $nombre .= '.'.$extencion;
+            $ruta = $directorio . $nombre;
+
+            // Condicional para desplegar el tamaño en KB o en MB (esta ya es la variable definitiva que se enviara a BD)
+            if($tamanoKb>1000000.0){
+                $tamanoKb /= 1000000.0;
+                $tamano = number_format($tamanoKb,2);
+                $tamano .= ' GB';
+            }else if($tamanoKb>1024.0){
+                $tamanoKb /= 1024.0;
+                $tamano = number_format($tamanoKb,2);
+                $tamano .= ' MB';
+            }else{
+                $tamano = number_format($tamanoKb,2);
+                $tamano .= ' KB';
+            }
+
+            // Ya listas todas las variables, toca moverlas al directorio final y registrarlos en BD
+            if(move_uploaded_file($archivo['tmp_name'],$ruta)) {
+                // Si y solo si el archivo se movió, éste se registra en BD y si es de tipo imagen "1" se crea su thumb
+                $this->DashboardDB->registroArchivo($nombre,$ruta,$tamano,$fecha,$tipo);
+                if($tipo == 1){
+                    $this->crearThumb($nombre);
+                }
+                echo "Archivo Subido";
+            }else{
+                echo "Error al subir archivo";
+            }
         }
-        redirect('Dashboard');
+
+        //redirect('Dashboard');
     }
 
 /*

@@ -15,7 +15,7 @@
                                     <p>Subir Archivos</p>
                                     <input type="file" class="inpArchivo" id="inpArchivo" name="archivos[]" multiple required>
                                 </div>    
-                                <input type="submit" id="btnSubir" name="btnSubir" value="Subir">
+                                <input type="button" id="btnSubir" name="btnSubir" value="Subir">
                             </form>
                         </div>
                     </div>

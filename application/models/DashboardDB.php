@@ -4,6 +4,10 @@ class DashboardDB extends CI_model{
         parent::__construct();
         $this->load->database();
     }
+
+    public function registroArchivoPre($tamano, $fecha, $tipo){
+        return $this->db->insert('archivo_cargado',['tamano'=>$tamano, 'fecha'=>$fecha, 'tipo'=>$tipo]);
+    }
     
     public function registroArchivo($nombre, $ruta, $tamano, $fecha, $tipo){
         return $this->db->insert('archivo_cargado',['nombre'=>$nombre, 'ruta'=>$ruta, 'tamano'=>$tamano, 'fecha'=>$fecha, 'tipo'=>$tipo]);
@@ -20,6 +24,11 @@ class DashboardDB extends CI_model{
     public function devolverArchivos(){
         $consultaArchivos = $this->db->get('archivo_cargado');
         return $consultaArchivos->result_id;
+    }
+
+    public function devolverArchivosPre(){
+        $consultaArchivos = $this->db->get('archivo_cargado');
+        return $consultaArchivos;
     }
 
     public function devolverArchivosTipo($tipoUno, $tipoDos){
